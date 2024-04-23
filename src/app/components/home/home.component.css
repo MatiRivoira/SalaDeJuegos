@@ -1,0 +1,93 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    width: 100%;
+    background-image: url('/assets/img/background.png');
+    background-size: cover;
+}
+
+.box-principal {
+    position: relative;
+    width: 80%;
+    height: 80vh;
+    max-height: auto;  /* Permite que el contenedor crezca */
+    backdrop-filter: blur(40px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(15, 15, 15, 0.8);
+    transition: height 0.3s ease; /* Opcional: para una transición suave de altura */
+    color: white;
+    padding: 20px 20px;
+}
+
+.box-principal h2 {
+    display: inline;
+    padding: 10px;
+}
+
+.right {
+    text-align: end;
+    justify-content: end;
+}
+
+.box-principal button {
+    border: none;
+    outline: none;
+    padding: 9px 25px;
+    background-color: transparent; /* Transparent background to emphasize neon effect */
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: box-shadow 0.3s ease-in-out, color 0.3s ease, text-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+    color: #ffffff; /* Initial color, matching the hover state for consistency */
+    text-shadow: none; /* No text shadow initially */
+}
+
+.box-principal button:hover {
+    text-shadow: 0 0 5px #00f7ff, /* Small cyan glow */
+                 0 0 10px #00ffea, /* Medium orange glow */
+                 0 0 15px #00ffff; /* Larger orange glow for depth */
+    filter: drop-shadow(0 0 3px #ea00ff) drop-shadow(0 0 26px #cc00ff) drop-shadow(0 0 29px #cc00ff);
+}
+
+.box-principal button:active {
+    opacity: 0.8; /* Slightly lower opacity to show the button is being pressed */
+}
+
+.box-alt {
+    position: relative;
+    width: 380px;
+    max-height: auto;  /* Permite que el contenedor crezca */
+    backdrop-filter: blur(40px);
+    border-radius: 20px;
+    color: #d1d1d1;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(15, 15, 15, 0.8);
+    transition: height 0.3s ease; /* Opcional: para una transición suave de altura */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+}
+
+.box-alt input {
+    border: none;
+    outline: none;
+    padding: 9px 25px;
+    background-color: #ffffff9e;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 10px;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+}
+
+.box-alt input:active {
+    opacity: 0.8;
+}
