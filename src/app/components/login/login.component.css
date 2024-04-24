@@ -183,3 +183,69 @@
     color: red;
     font-weight: 500;
 }
+
+.arrowVolver {
+    position: absolute;
+    color: white;
+    top: 26px;
+    left: 22px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out, color 0.3s ease, text-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.arrowVolver:hover {
+    text-shadow: 0 0 5px #00f7ff, /* Small cyan glow */
+                 0 0 10px #00ffea, /* Medium orange glow */
+                 0 0 15px #00ffff; /* Larger orange glow for depth */
+    filter: drop-shadow(0 0 3px #ea00ff) drop-shadow(0 0 26px #cc00ff) drop-shadow(0 0 29px #cc00ff);
+}
+
+.arrowDown {
+    position: absolute;
+    color: white;
+    bottom: 10px;
+    left: 175px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out, color 0.3s ease, text-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.arrowDown:hover {
+    text-shadow: 0 0 5px #00f7ff, /* Small cyan glow */
+                 0 0 10px #00ffea, /* Medium orange glow */
+                 0 0 15px #00ffff; /* Larger orange glow for depth */
+    filter: drop-shadow(0 0 3px #ea00ff) drop-shadow(0 0 26px #cc00ff) drop-shadow(0 0 29px #cc00ff);
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-top: -30px;
+}
+
+.container button {
+    margin: 0px 10px;
+    border: none;
+    outline: none;
+    padding: 9px 25px;
+    background-color: transparent; /* Transparent background to emphasize neon effect */
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: box-shadow 0.3s ease-in-out, color 0.3s ease, text-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+    color: #ffffff; /* Initial color, matching the hover state for consistency */
+    text-shadow: none; /* No text shadow initially */
+}
+.container button:hover {
+    text-shadow: 0 0 5px #00f7ff, /* Small cyan glow */
+                 0 0 10px #00ffea, /* Medium orange glow */
+                 0 0 15px #00ffff; /* Larger orange glow for depth */
+    filter: drop-shadow(0 0 3px #ea00ff) drop-shadow(0 0 26px #cc00ff) drop-shadow(0 0 29px #cc00ff);
+}

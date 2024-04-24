@@ -12,6 +12,7 @@
     position: relative;
     width: 80%;
     height: 80vh;
+    min-height: auto;
     max-height: auto;  /* Permite que el contenedor crezca */
     backdrop-filter: blur(40px);
     border-radius: 20px;
@@ -20,6 +21,32 @@
     transition: height 0.3s ease; /* Opcional: para una transición suave de altura */
     color: white;
     padding: 20px 20px;
+}
+
+@media (max-width: 996px) {
+    .box-principal {
+        height: auto; /* Ajusta el height a 'auto' para permitir expansión según el contenido */
+        padding: 10px; /* Reduce el padding en pantallas pequeñas para ahorrar espacio */
+        border-radius: 10px; /* Opcional: Reduce el radio del borde para un look más adecuado en pequeños dispositivos */
+    }
+}
+
+.navbar-nav button {
+    background: transparent; 
+    border: none; 
+    cursor: pointer; 
+    justify-content: end; 
+    text-align: end;
+}
+
+/* Específico para el botón de la navbar en Bootstrap */
+.navbar-toggler:focus {
+    outline: none !important;
+}
+
+
+.navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
 }
 
 .box-principal h2 {
@@ -47,7 +74,8 @@
     text-shadow: none; /* No text shadow initially */
 }
 
-.box-principal button:hover {
+.box-principal button:hover,
+.navbar-brand:hover {
     text-shadow: 0 0 5px #00f7ff, /* Small cyan glow */
                  0 0 10px #00ffea, /* Medium orange glow */
                  0 0 15px #00ffff; /* Larger orange glow for depth */
@@ -90,4 +118,19 @@
 
 .box-alt input:active {
     opacity: 0.8;
+}
+
+.col-auto img {
+    width: 100px;
+    border-radius: 25px;
+    transition: transform 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease; /* Suaviza la transición */
+    cursor: pointer; /* Cambia el cursor a una mano para indicar que es interactivo */
+}
+
+/* Estilo cuando el mouse pasa por encima de las imágenes */
+.col-auto img:hover {
+    transform: scale(1.1); /* Aumenta el tamaño de la imagen */
+    border-radius: 25px; /* Cambia el radio del borde al pasar el mouse */
+    z-index: 10; /* Asegura que la imagen se muestre por encima de los otros elementos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Añade una sombra alrededor de la imagen */
 }

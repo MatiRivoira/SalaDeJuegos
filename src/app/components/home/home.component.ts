@@ -12,17 +12,17 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class HomeComponent {
   userdata!:any;
+  nombreCuenta:string = "Cuenta";
 
   constructor(private titleService: Title, private router:Router) {
     this.titleService.setTitle("Inicio | Sala de juegos");
   }
 
   ngOnInit(): void {
-    this.userdata = sessionStorage.getItem("userdata");
-    console.log(this.userdata);
+    this.userdata = JSON.parse(sessionStorage.getItem("userdata"));
     
-    if (!this.userdata) {
-      
+    if (this.userdata) {
+      this.nombreCuenta = this.userdata.user.email;
     }
   }
 

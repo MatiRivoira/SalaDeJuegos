@@ -18,6 +18,13 @@ export class LoginComponent {
   errMsgEmail!:string;
   errorStates = { email: false, pass: false };
   errMsg!:string;
+  accesoRapido!:boolean;
+  ngEmail!:string;
+  ngPass!:string;
+
+  toggleAccesoRapido():void{
+    this.accesoRapido = !this.accesoRapido;
+  }
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -34,7 +41,7 @@ export class LoginComponent {
     this.errorStates = { email: false, pass: false };
     this.errMsgEmail = "";
     this.errMsg = "";
-
+    
     if (formData) {
       this.firebaseService.singIn(formData)
       .then(resp => {
@@ -55,6 +62,19 @@ export class LoginComponent {
             break;
         }
       });
+    }
+  }
+
+  autoFill(user:string) : void {
+    switch (user) {
+      case "user1":
+        this.ngEmail = 'mgrivoira26@gmail.com';
+        this.ngPass = 'banana22';
+        break;
+      case "user2":
+        this.ngEmail = 'krysa3d@krysa3d.com';
+        this.ngPass = 'haceTuPropioFunkoPersonalizado#ad';
+        break;
     }
   }
 
