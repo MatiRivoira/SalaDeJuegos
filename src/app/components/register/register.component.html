@@ -4,7 +4,8 @@
         <form *ngSwitchCase="true">
             <h2>Crear cuenta</h2>
             <p>Cuenta creada exitosamente!</p>
-            <input type="submit" routerLink="/login" value="Volver a iniciar sesión">
+            <p>{{msgRes}}</p>
+            <input type="submit" routerLink="/login" (click)="(this.redirigir = false)" value="Volver a iniciar sesión">
         </form>
         <form (ngSubmit)="onSubmit(f.value)" #f="ngForm" *ngSwitchDefault>
             <h2>Crear cuenta</h2>

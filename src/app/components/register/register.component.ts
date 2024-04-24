@@ -4,7 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { inject } from "@angular/core";
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -20,9 +20,10 @@ export class RegisterComponent {
   errMsgPass2!:string;
   errMsg!:string;
   res!:boolean;
+  msgRes:string = "Redirigiendo en 3 segundos...";
+  redirigir:boolean = true;
 
   errorStates = { email: false, pass: false, pass2: false };
-
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -31,7 +32,6 @@ export class RegisterComponent {
   constructor(private titleService: Title, private router:Router) {
     this.titleService.setTitle("Crear cuenta | Sala de juegos");
   }
-
 
   //? Register with firebase
   firebaseService = inject(AuthService);
@@ -79,6 +79,18 @@ export class RegisterComponent {
       .then(resp => {
         console.log(resp);
         this.res = true;
+        let counter = 2;
+        const interval = setInterval(() => {
+          this.msgRes = `Redirigiendo en ${counter} segundos...`; // Actualiza el mensaje con el contador
+          counter--;
+
+          if (counter < 0) {
+            clearInterval(interval);
+            this.msgRes = "Redirigiendo...";
+            this.firebaseService.singIn(formData);
+            this.esperarYRedirigir("userdata", JSON.stringify(resp), "/home");
+          }
+        }, 1000);
       })
       .catch(err => {
         console.log(err.message.trim());
@@ -96,5 +108,15 @@ export class RegisterComponent {
         }
       });
     }
+  }
+
+  esperarYRedirigir(storage:string, detalle:any, url:string, intervalo:number = 50) {
+    const idIntervalo = setInterval(() => {
+        sessionStorage.setItem(storage, detalle);
+        if (sessionStorage.getItem(storage) == detalle && this.redirigir) {
+            clearInterval(idIntervalo);
+            this.router.navigateByUrl(url);
+        }
+    }, intervalo);
   }
 }

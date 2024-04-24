@@ -12,17 +12,17 @@ import { Title } from '@angular/platform-browser';
 })
 export class QuienSoyComponent {
   userdata!:any;
+  nombreCuenta!:string;
 
   constructor(private titleService: Title, private router:Router) {
     this.titleService.setTitle("Quien soy | Sala de juegos");
   }
 
   ngOnInit(): void {
-    this.userdata = sessionStorage.getItem("userdata");
-    console.log(this.userdata);
+    this.userdata = JSON.parse(sessionStorage.getItem("userdata"));
     
-    if (!this.userdata) {
-      
+    if (this.userdata) {
+      this.nombreCuenta = this.userdata.user.email;
     }
   }
 

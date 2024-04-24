@@ -4,7 +4,6 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { Router } from "@angular/router";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
-
 @Injectable({
     providedIn: 'root'
 })

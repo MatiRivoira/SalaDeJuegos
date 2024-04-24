@@ -12,6 +12,7 @@
             <i class="backInput" [ngClass]="{'input-error': errorStates.email}"></i>
         </div>
         <div class="inputBox">
+            <div *ngIf="errMsgPass" class="err-msg"> {{errMsgPass}} </div>
             <input [type]="showPassword ? 'text' : 'password'" name="password" [(ngModel)]="ngPass" required>
             <span>Contraseña</span>
             <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" (click)="togglePasswordVisibility()">

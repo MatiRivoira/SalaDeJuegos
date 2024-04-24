@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
 import { inject } from "@angular/core";
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -21,6 +21,7 @@ export class LoginComponent {
   accesoRapido!:boolean;
   ngEmail!:string;
   ngPass!:string;
+  errMsgPass!:string;
 
   toggleAccesoRapido():void{
     this.accesoRapido = !this.accesoRapido;
@@ -41,6 +42,7 @@ export class LoginComponent {
     this.errorStates = { email: false, pass: false };
     this.errMsgEmail = "";
     this.errMsg = "";
+    this.errMsgPass = "";
     
     if (formData) {
       this.firebaseService.singIn(formData)
@@ -58,6 +60,12 @@ export class LoginComponent {
           case "auth/invalid-credential":
             this.errMsg = "Correo y/o contraseña incorrecta."
             this.errorStates.email = true;
+            this.errorStates.pass = true;
+            break;
+          case "auth/missing-email":
+            this.errMsgEmail = "Ingrese el correo electronico.";
+            this.errorStates.email = true;
+            this.errMsgPass = "Ingrese la contraseña";
             this.errorStates.pass = true;
             break;
         }

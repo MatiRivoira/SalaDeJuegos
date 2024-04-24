@@ -99,6 +99,7 @@
 } 
 
 .login-container form .links {
+    margin-top: 8px;
     display: flex;
     justify-content: center;
 }
