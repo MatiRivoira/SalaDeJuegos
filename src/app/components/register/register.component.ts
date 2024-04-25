@@ -87,8 +87,10 @@ export class RegisterComponent {
           if (counter < 0) {
             clearInterval(interval);
             this.msgRes = "Redirigiendo...";
-            this.firebaseService.singIn(formData);
-            this.esperarYRedirigir("userdata", JSON.stringify(resp), "/home");
+            if (this.redirigir) {
+              this.firebaseService.singIn(formData);
+              this.esperarYRedirigir("userdata", JSON.stringify(resp), "/home");
+            }
           }
         }, 1000);
       })
@@ -113,7 +115,7 @@ export class RegisterComponent {
   esperarYRedirigir(storage:string, detalle:any, url:string, intervalo:number = 50) {
     const idIntervalo = setInterval(() => {
         sessionStorage.setItem(storage, detalle);
-        if (sessionStorage.getItem(storage) == detalle && this.redirigir) {
+        if (sessionStorage.getItem(storage) == detalle) {
             clearInterval(idIntervalo);
             this.router.navigateByUrl(url);
         }

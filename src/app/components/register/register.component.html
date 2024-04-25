@@ -1,13 +1,14 @@
 
 <div class="login-container">
-    <span [ngSwitch]="res">
-        <form *ngSwitchCase="true">
+    @if (res) {
+        <form>
             <h2>Crear cuenta</h2>
             <p>Cuenta creada exitosamente!</p>
             <p>{{msgRes}}</p>
             <input type="submit" routerLink="/login" (click)="(this.redirigir = false)" value="Volver a iniciar sesión">
         </form>
-        <form (ngSubmit)="onSubmit(f.value)" #f="ngForm" *ngSwitchDefault>
+    } @else {
+        <form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
             <h2>Crear cuenta</h2>
             <div *ngIf="errMsg" class="err-msg-top"> {{errMsg}} </div>
             <div class="inputBox">
@@ -47,5 +48,5 @@
             <input type="submit" value="Crear cuenta">
             <p>Ya tienes una cuenta? <span routerLink="/login">Inicia sesión</span></p>
         </form>
-    </span>
+    }
 </div>
