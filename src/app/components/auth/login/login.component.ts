@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
 import { inject } from "@angular/core";
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { FirestoreService } from '../../../services/firestore.service';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +37,8 @@ export class LoginComponent {
   }
 
   //?Login with firebase
-  firebaseService = inject(AuthService);
+  authService = inject(AuthService);
+  firestoreService = inject(FirestoreService);
 
   async onSubmit(formData: any){
     this.errorStates = { email: false, pass: false };
@@ -45,10 +47,11 @@ export class LoginComponent {
     this.errMsgPass = "";
     
     if (formData) {
-      this.firebaseService.singIn(formData)
+      this.authService.singIn(formData)
       .then(resp => {
         console.log(resp);
-        this.esperarYRedirigir("userdata", JSON.stringify(resp), "/home");
+        this.logUserLogin(resp.user.email);
+        //this.esperarYRedirigir("userdata", JSON.stringify(resp), "/home");
       })
       .catch(err => {
         console.log(err);
@@ -84,6 +87,15 @@ export class LoginComponent {
         this.ngPass = 'haceTuPropioFunkoPersonalizado#ad';
         break;
     }
+  }
+
+  private logUserLogin(user:string) {
+    const logEntry = {
+      usuario: user,
+      fechaDeIngreso: new Date().toISOString()
+    };
+    // Suponiendo que tienes un servicio que maneja Firebase Firestore
+    this.firestoreService.addLogEntry(logEntry);
   }
 
   esperarYRedirigir(storage:string, detalle:any, url:string, intervalo:number = 50) {

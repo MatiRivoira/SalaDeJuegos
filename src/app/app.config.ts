@@ -2,7 +2,6 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 //?Firebase Authentication
-import { initializeApp } from "firebase/app";
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
@@ -18,14 +17,12 @@ const firebaseConfig = {
   appId: "1:1056647022278:web:6c4cf5155b106f961d39c7"
 };
 
-initializeApp(firebaseConfig);
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), 
     importProvidersFrom(
-      HttpClientModule,
       AngularFireModule.initializeApp(firebaseConfig),
+      HttpClientModule,
       AngularFirestoreModule
     )
   ]
