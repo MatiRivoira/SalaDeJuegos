@@ -195,8 +195,8 @@
     flex: 1; /* Hace que cada caja tome un espacio igual dentro del contenedor */
     padding: 10px;
     margin: 0 10px; /* Espacio entre las cajas */
-    background-color: #f4decb75; /* Color de fondo claro, ajusta según tu tema */
-    border: 1px solid #5a3e36; /* Borde sutil */
+    background-color: #ffffff75; /* Color de fondo claro, ajusta según tu tema */
+    border: 1px solid #585858; /* Borde sutil */
     border-radius: 8px; /* Bordes redondeados */
     text-align: center; /* Alinea el texto al centro */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidad */
@@ -205,7 +205,7 @@
 .stat-box h3 {
     font-size: medium;
     margin-bottom: 5px; /* Espacio entre el título y el valor */
-    color: #886048; /* Color de texto oscuro para contraste */
+    color: #ffffff; /* Color de texto oscuro para contraste */
 }
 
 .salir {

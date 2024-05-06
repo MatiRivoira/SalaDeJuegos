@@ -46,17 +46,17 @@ export class AhorcadoComponent {
   maxAttempts: number = 0;
   alphabet: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
   images = [
-    '/assets/img/games/fasesAhorcado/0.png',
-    '/assets/img/games/fasesAhorcado/1.png',
-    '/assets/img/games/fasesAhorcado/2.png',
-    '/assets/img/games/fasesAhorcado/3.png',
-    '/assets/img/games/fasesAhorcado/4.png',
-    '/assets/img/games/fasesAhorcado/5.png',
-    '/assets/img/games/fasesAhorcado/6.png',
-    '/assets/img/games/fasesAhorcado/7.png',
-    '/assets/img/games/fasesAhorcado/8.png',
-    '/assets/img/games/fasesAhorcado/9.png',
-    '/assets/img/games/fasesAhorcado/10.png'
+    '/assets/img/games/fasesAhorcado/0.webp',
+    '/assets/img/games/fasesAhorcado/1.webp',
+    '/assets/img/games/fasesAhorcado/2.webp',
+    '/assets/img/games/fasesAhorcado/3.webp',
+    '/assets/img/games/fasesAhorcado/4.webp',
+    '/assets/img/games/fasesAhorcado/5.webp',
+    '/assets/img/games/fasesAhorcado/6.webp',
+    '/assets/img/games/fasesAhorcado/7.webp',
+    '/assets/img/games/fasesAhorcado/8.webp',
+    '/assets/img/games/fasesAhorcado/9.webp',
+    '/assets/img/games/fasesAhorcado/10.webp'
   ];
   currentImage = '';
 

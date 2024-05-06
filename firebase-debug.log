@@ -1,0 +1,32 @@
+[debug] [2024-05-06T12:40:42.419Z] ----------------------------------------------------------------------
+[debug] [2024-05-06T12:40:42.423Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\bymat\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-05-06T12:40:42.423Z] CLI Version:   13.8.0
+[debug] [2024-05-06T12:40:42.424Z] Platform:      win32
+[debug] [2024-05-06T12:40:42.424Z] Node Version:  v20.12.2
+[debug] [2024-05-06T12:40:42.424Z] Time:          Mon May 06 2024 09:40:42 GMT-0300 (hora estándar de Argentina)
+[debug] [2024-05-06T12:40:42.424Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-05-06T12:40:42.544Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-05-06T12:40:42.545Z] > authorizing via signed-in user (bymatti123@gmail.com)
+[debug] [2024-05-06T12:40:42.545Z] [iam] checking project saladejuegos-3a991 for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-05-06T12:40:42.547Z] > refreshing access token with scopes: []
+[debug] [2024-05-06T12:40:42.549Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-05-06T12:40:42.550Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-05-06T12:40:42.703Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-05-06T12:40:42.703Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-05-06T12:40:42.711Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/saladejuegos-3a991:testIamPermissions [none]
+[debug] [2024-05-06T12:40:42.711Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/saladejuegos-3a991:testIamPermissions x-goog-quota-user=projects/saladejuegos-3a991
+[debug] [2024-05-06T12:40:42.711Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/saladejuegos-3a991:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-05-06T12:40:43.550Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/saladejuegos-3a991:testIamPermissions 200
+[debug] [2024-05-06T12:40:43.550Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/saladejuegos-3a991:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-05-06T12:40:43.551Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/saladejuegos-3a991 [none]
+[debug] [2024-05-06T12:40:43.864Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/saladejuegos-3a991 200
+[debug] [2024-05-06T12:40:43.864Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/saladejuegos-3a991 {"projectId":"saladejuegos-3a991","projectNumber":"1056647022278","displayName":"SalaDeJuegos","name":"projects/saladejuegos-3a991","resources":{"hostingSite":"saladejuegos-3a991"},"state":"ACTIVE","etag":"1_2f0ae695-b3f5-4101-b9f1-5fd981e33097"}
+[info] 
+[info] === Deploying to 'saladejuegos-3a991'...
+[info] 
+[info] i  deploying firestore, hosting 
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2024-05-06T12:40:43.879Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/saladejuegos-3a991:test [none]
+[debug] [2024-05-06T12:40:43.879Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/saladejuegos-3a991:test [omitted]
