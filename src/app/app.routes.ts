@@ -2,6 +2,18 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
+        path: 'ahorcado',
+        loadComponent: () => import('./components/games/ahorcado/ahorcado.component').then(m => m.AhorcadoComponent),
+    },
+    {
+        path: 'mayor-o-menor',
+        loadComponent: () => import('./components/games/mayor-o-menor/mayor-o-menor.component').then(m => m.MayorOMenorComponent),
+    },
+    {
+        path: 'chat',
+        loadComponent: () => import('./components/chat/chat.component').then(m => m.ChatComponent),
+    },
+    {
         path: 'login',
         loadComponent: () => import('./components/auth/login/login.component').then((m) => m.LoginComponent),
     },
@@ -28,7 +40,7 @@ export const routes: Routes = [
     },
     {
         path: '**', 
-        redirectTo: '/login', 
+        redirectTo: '/home', 
         pathMatch: 'full' 
     }
 ];

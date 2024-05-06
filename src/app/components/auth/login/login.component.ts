@@ -51,7 +51,7 @@ export class LoginComponent {
       .then(resp => {
         console.log(resp);
         this.logUserLogin(resp.user.email);
-        //this.esperarYRedirigir("userdata", JSON.stringify(resp), "/home");
+        this.router.navigateByUrl("/home");
       })
       .catch(err => {
         console.log(err);
@@ -94,7 +94,6 @@ export class LoginComponent {
       usuario: user,
       fechaDeIngreso: new Date().toISOString()
     };
-    // Suponiendo que tienes un servicio que maneja Firebase Firestore
     this.firestoreService.addLogEntry(logEntry);
   }
 

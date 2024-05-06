@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-quien-soy',
@@ -11,23 +13,26 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './quien-soy.component.css'
 })
 export class QuienSoyComponent {
+  private subscription: Subscription;
   userdata!:any;
-  nombreCuenta!:string;
+  nombreCuenta:string = "Cuenta";
+
+  auth = inject(AuthService);
 
   constructor(private titleService: Title, private router:Router) {
     this.titleService.setTitle("Quien soy | Sala de juegos");
   }
 
   ngOnInit(): void {
-    this.userdata = JSON.parse(sessionStorage.getItem("userdata"));
-    
-    if (this.userdata) {
-      this.nombreCuenta = this.userdata.user.email;
-    }
+    this.subscription = this.auth.getUser().subscribe(user => {
+      if (user) {
+        this.userdata = user;
+        this.nombreCuenta = user.email;
+      }
+    });
   }
 
-  logOut(){
-    sessionStorage.removeItem("userdata");
-    this.userdata = null;
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe(); // Desuscribirse para evitar fugas de memoria
   }
 }

@@ -27,4 +27,14 @@ export class AuthService {
     sendRecoveryEmail(email: string) {
         return sendPasswordResetEmail(getAuth(), email);
     }
+
+    LogOut() {
+        this.auth.signOut().then(() => {
+            this.router.navigateByUrl('/login');
+        });
+    }
+
+    getUser() {
+        return this.auth.authState;
+    }
 }

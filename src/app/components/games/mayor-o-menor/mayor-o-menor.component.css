@@ -1,0 +1,226 @@
+/* mayor-o-menor.component.css */
+.container-juego {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    background: linear-gradient(to top, #191919 0%, rgb(63, 63, 63) 100%); /* Un gradiente suave */
+    font-family: 'Arial', sans-serif; /* Asegura una tipografía uniforme */
+}
+
+
+.card-container {
+    width: 200px;
+    height: 300px;
+    margin: 20px auto;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2); /* Añade una sombra para destacar la carta */
+    border-radius: 10px; /* Bordes redondeados para el contenedor de la carta */
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out; /* Suave transición de opacidad */
+}
+
+.container-juego {
+    display: flex; /* Activa Flexbox para este contenedor */
+    flex-direction: column; /* Organiza los hijos en una columna */
+    align-items: center; /* Centra los hijos horizontalmente en el contenedor */
+    justify-content: center; /* Centra los hijos verticalmente en el contenedor */
+    text-align: center; /* Asegura que el texto dentro de los elementos flex también esté centrado */
+
+    width: 100%; /* Ocupa el 100% del ancho disponible */
+    height: 100vh; /* Utiliza 100% de la altura de la ventana del navegador */
+    margin: 0 auto; /* Centrado horizontal si es necesario, aunque flex ya lo maneja */
+}
+
+.btn-mayor {
+    width: 80%;
+    position: relative;
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    background-image: linear-gradient(to bottom, #6afb57, #2cd72c); /* De celeste claro a un azul más oscuro */
+    font-weight: 700;
+    font-size: 2em;
+    display: flex;
+    align-items: center; /* Alinea verticalmente el contenido dentro del botón */
+    justify-content: center; /* Centra el contenido horizontalmente dentro del botón */
+    gap: 10px; /* Espacio entre el icono y el texto */
+    padding: 20px;
+    -webkit-border-radius: 8px;
+    border: none;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 9px 0px  #2b9c1c, 0px 9px 25px rgba(0, 0, 0, .3);
+    -moz-box-shadow: 0px 9px 0px #2b9c1c, 0px 9px 25px rgba(0, 0, 0, .3);
+    box-shadow: 0px 9px 0px #2b9c1c, 0px 9px 25px rgba(0, 0, 0, .3);
+    margin: 20px auto;
+    text-align: center;
+    
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -ms-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+    margin-right: 10px;
+}
+
+.btn-mayor:active {
+    -webkit-box-shadow: 0px 3px 0px #2b9c1c, 0px 3px 6px rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0px 3px 0px #2b9c1c, 0px 3px 6px rgba(0, 0, 0, .2);
+    box-shadow: 0px 3px 0px #2b9c1c, 0px 3px 6px rgba(0, 0, 0, .2);
+    position: relative;
+    top: 6px;
+}
+
+.btn-menor {
+    width: 80%;
+    position: relative;
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    background-image: linear-gradient(to bottom, #fb5757, #d72c2c); /* De celeste claro a un azul más oscuro */
+    font-weight: 700;
+    font-size: 2em;
+    display: flex;
+    align-items: center; /* Alinea verticalmente el contenido dentro del botón */
+    justify-content: center; /* Centra el contenido horizontalmente dentro del botón */
+    gap: 10px; /* Espacio entre el icono y el texto */
+    padding: 20px;
+    -webkit-border-radius: 8px;
+    border: none;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 9px 0px  #9b1e1e, 0px 9px 25px rgba(0, 0, 0, .3);
+    -moz-box-shadow: 0px 9px 0px #9b1e1e, 0px 9px 25px rgba(0, 0, 0, .3);
+    box-shadow: 0px 9px 0px #9b1e1e, 0px 9px 25px rgba(0, 0, 0, .3);
+    margin: 20px auto;
+    text-align: center;
+    
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -ms-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+.btn-menor:active {
+    -webkit-box-shadow: 0px 3px 0px #9b1e1e, 0px 3px 6px rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0px 3px 0px #9b1e1e, 0px 3px 6px rgba(0, 0, 0, .2);
+    box-shadow: 0px 3px 0px #9b1e1e, 0px 3px 6px rgba(0, 0, 0, .2);
+    position: relative;
+    top: 6px;
+}
+
+.score-animation {
+    position: absolute;
+    font-size: 48px;
+    color: #ffffff;  /* Color verde para la puntuación positiva */
+    text-shadow: 0px 0px 10px #00ff00; /* Sombra verde */
+    font-size: 64px; /* Tamaño del texto para que la sombra sea más notable */
+    font-weight: bold; /* Hacer el texto más grueso para un mejor efecto de sombra */
+    opacity: 0;
+    animation: scorePopUp 1s ease-out forwards;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes scorePopUp {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -10px);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50px);
+    }
+}
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-image: linear-gradient(to top, #191919 0%, rgb(63, 63, 63) 100%); /* Un gradiente suave */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    color: white;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    margin-top: 15px;
+    background-color: #ffffff;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.stat-box {
+    flex: 1; /* Hace que cada caja tome un espacio igual dentro del contenedor */
+    padding: 10px;
+    margin: 0 10px; /* Espacio entre las cajas */
+    background-color: #f4decb75; /* Color de fondo claro, ajusta según tu tema */
+    border: 1px solid #5a3e36; /* Borde sutil */
+    border-radius: 8px; /* Bordes redondeados */
+    text-align: center; /* Alinea el texto al centro */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidad */
+}
+
+.stat-box h3 {
+    font-size: medium;
+    margin-bottom: 5px; /* Espacio entre el título y el valor */
+    color: #886048; /* Color de texto oscuro para contraste */
+}
+
+.salir {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    background-color: transparent;
+    border: none; /* Borde semitransparente para un estilo más sutíl */
+    color: black; /* Texto blanco para mejor contraste */
+    padding: 10px 20px; /* Espaciado interno para hacerlo más grande y fácil de clickear */
+    cursor: pointer; /* Cambia el cursor a un puntero para indicar que es un botón */
+    transition: all 0.3s ease; /* Suaviza la transición de los cambios de estilo */
+}
+
+.salir:hover {
+    transform: scale(1.2); /* Aumenta ligeramente el tamaño del botón */
+}

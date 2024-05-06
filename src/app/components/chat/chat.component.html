@@ -1,7 +1,7 @@
 <div class="box-principal">
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
         <div class="container-fluid">
-            <a class="navbar-brand" style="color: white;" routerLink="/home">
+            <a class="navbar-brand" href="#" style="color: white;" routerLink="/home">
                 <img src="../../../favicon.ico" alt="Icon" width="50">
                 Sala de juegos
             </a>
@@ -10,6 +10,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto" >
+                    <button routerLink="/chat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-right-dots" viewBox="0 0 16 16">
+                            <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z"/>
+                            <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                        </svg>
+                        Chat
+                    </button>
                     <button routerLink="/quien-soy">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-fingerprint" viewBox="0 0 16 16">
                             <path d="M8.06 6.5a.5.5 0 0 1 .5.5v.776a11.5 11.5 0 0 1-.552 3.519l-1.331 4.14a.5.5 0 0 1-.952-.305l1.33-4.141a10.5 10.5 0 0 0 .504-3.213V7a.5.5 0 0 1 .5-.5Z"/>
@@ -20,7 +27,7 @@
                         </svg>
                         Quien soy
                     </button>
-                    <button *ngIf="userdata" >
+                    <button *ngIf="userdata">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-gear" viewBox="0 0 16 16">
                             <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m.256 7a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1zm3.63-4.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382zM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
                         </svg>
@@ -44,18 +51,29 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid box-info">
-        <div class="row">
-            <div class="col-4">
-                <img class="perfil-alumno" src="../../../assets/img/perfil.jpg" alt="Perfil del Alumno">
-            </div>
-            <div class="col-8">
-                <h2>Datos Personales</h2>
-                <p><strong>Nombre:</strong> Matias Rivoira</p>
-                <p><strong>Email:</strong> {{ 'mgrivoira26@gmail.com' }}</p>
-                <h2>Sobre Mi Juego</h2>
-                <p>--</p>
-            </div>
+    <div class="chat-container">
+        <div class="mensajes-container" #scrollMe>
+            <div *ngFor="let message of messages | async" class="message-content" [ngClass]="{'my-message-content': message.userEmail === userdata?.email}">
+                <div class="message-header">
+                    <strong *ngIf="message.userEmail === userdata?.email; else otherUser">
+                        Yo
+                    </strong>
+                    <ng-template #otherUser>
+                        {{ message.userEmail }}
+                    </ng-template>
+                </div>
+                <p>{{ message.text }}</p>
+                <div class="message-time">[{{ message.timestamp | date:'short' }}]</div>
+            </div>        
         </div>
+        <form (ngSubmit)="sendMessage()" class="message-form">
+            <input type="text" [(ngModel)]="newMessage" name="message" placeholder="Escribe un mensaje" required>
+            <button type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+                </svg>
+                Enviar
+            </button>
+        </form>
     </div>
 </div>
