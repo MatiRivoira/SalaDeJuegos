@@ -31,7 +31,7 @@ export class MayorOMenorComponent {
   startGame() {
     this.gameLost = false;
     this.score = 0;
-    this.deck = this.createDeck(); // Asegúrate de tener un mazo fresco
+    this.deck = this.createDeck();
     this.shuffleDeck();
     this.currentCard = this.deck.pop();
     this.nextCard = this.deck.pop();
@@ -55,17 +55,21 @@ export class MayorOMenorComponent {
     return deck;
   }
 
-  shuffleDeck() {
-    for (let i = this.deck.length - 1; i > 0; i--) {
+shuffleDeck() {
+  for (let i = this.deck.length - 1; i > 0; i--) {
+      // Genera un índice aleatorio j que es menor o igual a i
       const j = Math.floor(Math.random() * (i + 1));
+      // Intercambia las cartas en las posiciones i y j del mazo
+      // Esto se hace mediante una desestructuración de array
       [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
-    }
   }
+}
+
 
   guess(isHigher: boolean) {
     if (!this.deck.length) {
-      this.deck = this.createDeck(); // Crea un nuevo mazo
-      this.shuffleDeck(); // Baraja el mazo
+      this.deck = this.createDeck();
+      this.shuffleDeck();
     }
   
     const nextCard = this.deck.pop();

@@ -41,7 +41,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.nombreCuenta = user.email;
         this.userId = user.uid;
       } else {
-        this.router.navigate(['/login']);  // Redirige si no hay usuario autenticado
+        this.router.navigate(['/login']);
       }
     });
 
@@ -60,11 +60,11 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   sendMessage(): void {
     if (!this.newMessage.trim()) {
-      return;  // No permite el envío de mensajes vacíos
+      return; 
     }
     if (this.nombreCuenta) {
       this.chatService.sendMessage(this.newMessage, this.nombreCuenta);
-      this.newMessage = '';  // Limpia el campo después de enviar
+      this.newMessage = '';
     } else {
       console.error("No user logged in or email is not available!");
     }
