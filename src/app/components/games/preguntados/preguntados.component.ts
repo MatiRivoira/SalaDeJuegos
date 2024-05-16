@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { PreguntadosService } from '../../../services/preguntados.service';
 import { Pregunta } from '../../../interfaces/pregunta';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { ImageService } from '../../../services/image.service';
 
 @Component({
   selector: 'app-preguntados',
@@ -29,6 +30,9 @@ export class PreguntadosComponent implements OnInit {
 
   score: number = 0;
 
+  imageSearch = inject(ImageService);
+  imagenDeFondo: string = '';
+
   constructor(private preguntadosService: PreguntadosService, private titleService: Title) {
     this.titleService.setTitle("Preguntados | Sala de juegos");
   }
@@ -38,6 +42,18 @@ export class PreguntadosComponent implements OnInit {
     this.reiniciarJuego();
   }
 
+  obtenerImagenDeFondo() {
+    this.imagenDeFondo = "";
+    if (this.preguntaSeleccionada.claveImagen) {
+      this.imageSearch.buscarImagenes(this.preguntaSeleccionada.claveImagen).subscribe((data: any) => {
+        console.log(this.preguntaSeleccionada.claveImagen);
+        if (data.hits.length > 0) {
+          this.imagenDeFondo = data.hits[0].largeImageURL; // suponiendo que quieres usar la primera imagen de los resultados
+        }
+      });
+    }
+    
+  }
   // preguntados.component.ts
 
   girarRuleta() {
@@ -66,6 +82,7 @@ export class PreguntadosComponent implements OnInit {
     const wheelElement = document.querySelector(".wheel");
     wheelElement.addEventListener("transitionend", () => {
       setTimeout(() => {
+        
         if (indiceSeleccionado == 3) {
           indiceSeleccionado = 1;
         } else if(indiceSeleccionado == 1) {
@@ -104,6 +121,7 @@ export class PreguntadosComponent implements OnInit {
     // Seleccionar una pregunta aleatoria de la categoría
     this.preguntaSeleccionada = preguntasCategoria[Math.floor(Math.random() * preguntasCategoria.length)];
     console.log('Pregunta seleccionada:', this.preguntaSeleccionada);
+    this.obtenerImagenDeFondo();
   }
 
   claseBtn:string = "btn-normal";
@@ -143,9 +161,11 @@ export class PreguntadosComponent implements OnInit {
   }
 
   loseGame() {
-    this.respondio = true;
-    this.endTime = Date.now();
-    this.gameTimeInSeconds = (this.endTime - this.startTime) / 1000;
+    if (!this.respondio) {
+      this.respondio = true;
+      this.endTime = Date.now();
+      this.gameTimeInSeconds = (this.endTime - this.startTime) / 1000;
+    }
   }
 
   reiniciarJuego(): void {

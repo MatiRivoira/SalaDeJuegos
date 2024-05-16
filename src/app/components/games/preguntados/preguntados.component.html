@@ -23,9 +23,13 @@
         <span>{{tiempoRestante}}'</span>
       </div>
       <div class="question-body">
-        <div class="pregunta">
+        <div class="pregunta" [style.background-image]="'url(' + imagenDeFondo + ')'">
           <p *ngIf="showScoreAnimation" class="score-animation" [style.textShadow]="'0px 0px 10px ' + scoreAnimationShadowColor">{{scoreAnimationText}}</p>
-          <p class="question-text">{{ preguntaSeleccionada.pregunta }}</p>
+          @if (imagenDeFondo) {
+            <p class="question-text" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">{{ preguntaSeleccionada.pregunta }}</p>
+          } @else {
+            <p class="question-text">{{ preguntaSeleccionada.pregunta }}</p>
+          }
         </div>
         @if (!respondio) {
           <ul class="options-list">

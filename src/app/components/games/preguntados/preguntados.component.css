@@ -134,12 +134,15 @@
   background-color: white;
   border-radius: 8px;
   margin-bottom: 30px;
-  display: flex;          /* Habilita flexbox */
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;    /* Centra verticalmente */
-  text-align: center;     /* Asegura que el texto dentro de los elementos también se centre */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   font-weight: 600;
+  background-size: cover; /* La imagen de fondo se ajustará para cubrir completamente el contenedor */
+  background-position: center; /* Centra la imagen de fondo horizontal y verticalmente */
 }
+
 
 
 .question-text {
