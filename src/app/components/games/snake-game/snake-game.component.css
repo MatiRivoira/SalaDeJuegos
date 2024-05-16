@@ -1,0 +1,76 @@
+
+
+.container-fluid {
+    font-family: 'Press Start 2P', cursive !important;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: end;
+    justify-content: center; /* Centra horizontalmente */
+    text-align: center;
+    background-color: #395cd6;
+}
+
+.container-fluid canvas {
+    margin-bottom: 245px;
+    margin-left: 30px;
+    z-index: 2;
+    border: 2px solid black;
+}
+
+.container-fluid img {
+    position: absolute;
+    z-index: 1;
+}
+
+.container-fluid p {
+    position: absolute;
+    z-index: 4;
+    margin-bottom: 525px;
+    margin-left: 230px;
+    user-select: none;
+    font-size: 11px;
+}
+
+.container-fluid h2 {
+    position: absolute;
+    z-index: 4;
+    margin-bottom: 380px;
+    margin-left: 40px;
+    user-select: none;
+}
+
+.container-fluid button {
+    position: absolute;
+    z-index: 4;
+    margin-bottom: 89px;
+    margin-left: 257px;
+    border-radius: 50%;
+    font-size: 6px;
+    font-weight: bolder;
+    border: none;
+    background-color: transparent;
+    height: 60px;
+    outline: none;
+}
+
+.container-fluid button:active {
+    background-color: rgba(255, 53, 53, 0.486);    
+}
+
+.salir {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    background-color: transparent;
+    border: none; /* Borde semitransparente para un estilo más sutíl */
+    color: white; /* Texto blanco para mejor contraste */
+    padding: 10px 20px; /* Espaciado interno para hacerlo más grande y fácil de clickear */
+    cursor: pointer; /* Cambia el cursor a un puntero para indicar que es un botón */
+    transition: all 0.3s ease; /* Suaviza la transición de los cambios de estilo */
+}
+
+.salir:hover {
+    transform: scale(1.2); /* Aumenta ligeramente el tamaño del botón */
+}

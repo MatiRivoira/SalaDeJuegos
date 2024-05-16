@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -68,7 +69,8 @@ export class AhorcadoComponent {
   gameTimeInSeconds: number;
   score: number;
 
-  constructor() {
+  constructor(private titleService: Title) {
+    this.titleService.setTitle("Ahorcado | Sala de juegos");
     this.startGame();
   }
 

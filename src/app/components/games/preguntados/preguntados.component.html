@@ -1,0 +1,55 @@
+<!-- preguntados.component.html -->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<button class="salir" (click)="this.reiniciarJuego();" routerLink="/home">
+  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+  </svg>
+</button>
+<div class="container-full">
+  @if (!this.categoriaSeleccionada) {
+    <div class="container">
+      <div class="spinBtn"><span (click)="girarRuleta()">Girar</span></div>
+      <div class="wheel" [style.transform]="ruletaTransform">
+        <div class="section" *ngFor="let categoria of categorias; let i = index" [style.transform]="'rotate(' + i * (360 / categorias.length) + 'deg)'" [style.background-color]="categoria.color" [style.border]="'3px solid ' + categoria.colorBorder">
+          <i class="{{ categoria.iconClass }}"></i>
+        </div>    
+      </div>
+    </div>
+  } @else {
+    <div class="question-container">
+      <div class="question-title" [style.background-color]="categoriaSeleccionada.color">
+        <i class="{{ categoriaSeleccionada.iconClass }}"></i>
+        <div class="title-text">{{ categoriaSeleccionada.categoria | uppercase }}</div>
+        <span>{{tiempoRestante}}'</span>
+      </div>
+      <div class="question-body">
+        <div class="pregunta">
+          <p *ngIf="showScoreAnimation" class="score-animation" [style.textShadow]="'0px 0px 10px ' + scoreAnimationShadowColor">{{scoreAnimationText}}</p>
+          <p class="question-text">{{ preguntaSeleccionada.pregunta }}</p>
+        </div>
+        @if (!respondio) {
+          <ul class="options-list">
+            <li *ngFor="let opcion of preguntaSeleccionada.opciones" (click)="evaluarRespuesta(opcion)">
+              <button id="{{opcion}}" class="btn-normal" (click)="evaluarRespuesta(opcion)">
+                {{ opcion }}
+              </button>          
+            </li>
+          </ul>
+        } @else {
+          <div class="datos-fin-partida">
+            <div class="dato-partida">
+              <span>Tiempo de juego</span><br>
+              {{gameTimeInSeconds}}
+            </div>
+            <div class="dato-partida">
+              <span>Puntaje</span><br>
+              {{score}}
+            </div>
+          </div>
+          <button class="btn-summary" (click)="reiniciarJuego()">VOLVER A JUGAR</button>
+          <button class="btn-summary" (click)="reiniciarJuego()" routerLink="/home">SALIR</button>
+        }
+      </div>
+    </div>
+  }
+</div>

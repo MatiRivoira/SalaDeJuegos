@@ -2,6 +2,14 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
     {
+        path: 'snake-game',
+        loadComponent: () => import('./components/games/snake-game/snake-game.component').then(m => m.SnakeGameComponent),
+    },
+    {
+        path: 'preguntados',
+        loadComponent: () => import('./components/games/preguntados/preguntados.component').then(m => m.PreguntadosComponent),
+    },
+    {
         path: 'ahorcado',
         loadComponent: () => import('./components/games/ahorcado/ahorcado.component').then(m => m.AhorcadoComponent),
     },
